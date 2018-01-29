@@ -33,6 +33,7 @@ def preprocess_text(text):
   text = remove_links(text)
   text = remove_special_chars(text)
   text = remove_numbers(text)
+  text = fill_empty(text)
   # TODO:
   # - remove "kkkkkk"
   return text
@@ -54,6 +55,9 @@ def remove_special_chars(text):
 
 def remove_numbers(text):
   return re.sub(r'\d', '', text)
+
+ef fill_empty(text):
+  return re.sub(r'(?![\s\S])', 'none', text)
 
 def build_classification_report(clf, test_data):
   y_true = [row[1] for row in test_data]
